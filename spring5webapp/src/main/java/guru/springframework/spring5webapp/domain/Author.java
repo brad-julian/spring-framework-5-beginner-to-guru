@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Author {
@@ -56,6 +59,10 @@ public class Author {
     this.lastName = lastName;
   }
 
+  public String getFullName() {
+    return firstName + " " + lastName;
+  }
+
   public Set<Book> getBooks() {
     return books;
   }
@@ -83,7 +90,7 @@ public class Author {
         "id=" + id +
         ", firstName='" + firstName + '\'' +
         ", lastName='" + lastName + '\'' +
-        ", books=" + books +
+        ", books=" + books.stream().map(Book::getTitle).collect(toList()) +
         '}';
   }
 }

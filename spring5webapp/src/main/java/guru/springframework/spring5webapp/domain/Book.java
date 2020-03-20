@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Book {
@@ -22,6 +25,9 @@ public class Book {
       inverseJoinColumns = @JoinColumn(name = "author_id")
   )
   private Set<Author> authors = new HashSet<>();
+
+  @ManyToOne
+  private Publisher publisher;
 
   public Book() {
   }
@@ -69,6 +75,14 @@ public class Book {
     this.authors = authors;
   }
 
+  public Publisher getPublisher() {
+    return publisher;
+  }
+
+  public void setPublisher(Publisher publisher) {
+    this.publisher = publisher;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -88,7 +102,8 @@ public class Book {
         "id=" + id +
         ", title='" + title + '\'' +
         ", isbn='" + isbn + '\'' +
-        ", authors=" + authors +
+        ", authors=" + authors.stream().map(Author::getFullName).collect(toList()) +
+        ", publisher=" + publisher.getName() +
         '}';
   }
 }
