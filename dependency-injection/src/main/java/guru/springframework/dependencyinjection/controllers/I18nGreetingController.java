@@ -5,11 +5,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class SpanishGreetingController {
+public class I18nGreetingController {
 
   private final GreetingService greetingService;
 
-  public SpanishGreetingController(@Qualifier("spanishGreetingService") GreetingService greetingService) {
+  public I18nGreetingController(@Qualifier("i18nGreetingService") GreetingService greetingService) {
     this.greetingService = greetingService;
   }
 
