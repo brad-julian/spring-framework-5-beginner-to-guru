@@ -2,6 +2,7 @@ package guru.springframework.dependencyinjection;
 
 import guru.springframework.dependencyinjection.controllers.ConstructorInjectedController;
 import guru.springframework.dependencyinjection.controllers.MyController;
+import guru.springframework.dependencyinjection.controllers.SpanishGreetingController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +20,10 @@ public class DependencyInjectionApplication {
     System.out.println("------- ConstructorInjectedController");
     ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
     System.out.println(constructorInjectedController.getGreeting());
+
+    System.out.println("------- SpanishGreetingController");
+    SpanishGreetingController spanishGreetingController = (SpanishGreetingController) ctx.getBean("spanishGreetingController");
+    System.out.println(spanishGreetingController.getGreeting());
   }
 
 }
