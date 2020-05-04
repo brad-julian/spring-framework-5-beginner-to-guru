@@ -1,0 +1,16 @@
+target/
+!**/src/main/**
+!**/scr/test/**
+/dist/
+build/
+
+### Gradle ###
+.gradle/
+gradle/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
