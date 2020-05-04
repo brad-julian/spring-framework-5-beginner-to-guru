@@ -12,7 +12,7 @@ public class DependencyInjectionApplication {
     ApplicationContext ctx = SpringApplication.run(DependencyInjectionApplication.class, args);
 
     MyController myController = (MyController) ctx.getBean("myController");
-    
+
     System.out.println(myController.greeting());
   }
 
