@@ -1,8 +1,11 @@
 package guru.springframework.dependencyinjection.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class GreetingServiceImpl implements GreetingService {
   @Override
   public String getGreeting() {
-    return "Hello, World!";
+    return "Hello, world!";
   }
 }
