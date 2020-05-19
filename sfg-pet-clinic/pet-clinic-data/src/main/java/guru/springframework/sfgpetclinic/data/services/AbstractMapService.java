@@ -1,10 +1,12 @@
 package guru.springframework.sfgpetclinic.data.services;
 
+import guru.springframework.sfgpetclinic.data.model.BaseEntity;
+
 import java.util.*;
 
-public abstract class AbstractMapService<T, ID> {
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Integer> {
 
-  protected Map<ID, T> map = new HashMap<>();
+  protected Map<Integer, T> map = new HashMap<>();
 
   public Set<T> findAll() {
     return new HashSet<>(map.values());
@@ -14,8 +16,14 @@ public abstract class AbstractMapService<T, ID> {
     return map.get(id);
   }
 
-  public T save(ID id, T object) {
-    map.put(id, object);
+  public T save(T object) {
+    if (object == null)
+      throw new IllegalArgumentException("Object passed to `save()` cannot be null");
+
+    if (object.getId() == null)
+      object.setId(getNextId());
+
+    map.put(object.getId(), object);
     return object;
   }
 
@@ -25,5 +33,13 @@ public abstract class AbstractMapService<T, ID> {
 
   public void deleteById(ID id) {
     map.remove(id);
+  }
+
+  //////////  private  //////////
+  private Integer getNextId() {
+    if (map.isEmpty()) {
+      return 1;
+    }
+    return Collections.max(map.keySet()) + 1;
   }
 }

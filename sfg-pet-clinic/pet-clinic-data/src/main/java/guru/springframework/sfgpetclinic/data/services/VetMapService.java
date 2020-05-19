@@ -7,11 +7,6 @@ import org.springframework.stereotype.Service;
 public class VetMapService extends AbstractMapService<Vet, Integer> implements VetService {
 
   @Override
-  public Vet save(Vet object) {
-    return super.save(object.getId(), object);
-  }
-
-  @Override
   public Vet findByLastName(String lastName) {
     return null;
   }
